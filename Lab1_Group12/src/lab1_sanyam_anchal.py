@@ -24,13 +24,31 @@ def get_user_input(prompt, min_value, max_value):
         except ValueError:
             print("The input needs to be an integer.")
 
-# Function to generate a password (skeleton)
-def generate_password(length, num_letters, num_digits, num_specials):
-    # Ensure total requested characters do not exceed length
+# Function to generate a password
+def generate_password(letters_length, digits_length, special_character_length):
     # Generate required characters (letters, digits, specials)
-    # Fill remaining characters
-    # Shuffle and return password
-    pass
+    password = [
+        random.choice(string.ascii_lowercase),
+        random.choice(string.ascii_uppercase)
+    ]
+
+    for _ in range(letters_length - 2):
+        password.append(random.choice(string.ascii_letters))
+
+    for _ in range(digits_length):
+        password.append(random.choice(string.digits))
+
+    for _ in range(special_character_length):
+        password.append(random.choice(string.punctuation))
+
+    # Shuffle
+    random.shuffle(password)
+
+    # Join the password into a string
+    password_string = "".join(password)
+
+    # Return password
+    return password_string
 
 # Main function (skeleton)
 def main():
