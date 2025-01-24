@@ -54,15 +54,42 @@ def generate_password(letters_length, digits_length, special_character_length):
 def main():
     print("\n--- Secure Password Generator ---\n")
 
-    # Step 1: Get user inputs for password length and character distribution
+    # Step 1: Get user inputs for password length and character distribution.
 
-    # Step 2: Validate user inputs
+    valid_input = False
+    while not valid_input:
+        total_length = get_user_input("Enter the total length of the password: ", PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)
+        letters_length = get_user_input("Enter the number of letters desired in the password: ", MIN_LETTERS_LENGTH, PASSWORD_MAX_LENGTH)
+        digits_length = get_user_input("Enter the number of digits desired in the password: ", MIN_DIGITS_LENGTH, PASSWORD_MAX_LENGTH)
+        special_character_length = get_user_input("Enter the number of special characters desired in the password: ", MIN_SPECIAL_CHARACTERS_LENGTH, PASSWORD_MAX_LENGTH)
+
+        # Step 2: Validate user inputs
+        if total_length < (letters_length + digits_length + special_character_length):
+            print("The sum of letters, digits, and special characters exceeds the total length. Please enter the valid length for letters, digits and special characters.\n")
+        else:
+            valid_input = True
 
     # Step 3: Generate the password
+    password = generate_password(letters_length, digits_length, special_character_length)
 
     # Step 4: Display the generated password
+    print(f"Your desired password is: {password}")
+    print("Password successfully generated with:")
+    print(f" - Letter: {letters_length}")
+    print(f" - Digits: {digits_length}")
+    print(f" - Special Characters: {special_character_length}")
 
     # Step 5: Save password to file
+    try:
+        with open("output.txt", "w") as file:
+            file.write(f"Password: {password}\n")
+    except PermissionError:
+        print("Error: Permission denied")
+    except OSError:
+        print(f"OSError: {OSError}")
+
+    print("\nResults saved to Output.txt")
+
 
 # Entry point of the script
 if __name__ == "__main__":
