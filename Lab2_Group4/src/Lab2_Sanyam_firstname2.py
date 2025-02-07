@@ -1,5 +1,5 @@
 import csv
-
+from sys import exit
 
 # Function to add a book to the reading list
 def add_book(title, author, year):
@@ -30,12 +30,33 @@ def search_book(title):
 
 # Function to delete a book
 def delete_book(title):
-    pass
+    try:
+        with open('books.csv', mode='r+', newline='') as file: # The file needs to exist for this.
+            reader = csv.reader(file)
+            data = list(reader) # Store the data into memory
+            writer = csv.writer(file) # Creating a writer object to write to the file.
+            for row in data:
+                if row[0].lower() == title.lower(): # If the book exists, remove it from the list.
+                    data.remove(row)
+                    found = True
+                    break
+            else:
+                found = False
+
+            if not found:
+                print("There aren't any records of this book in the file.")
+
+            file.seek(0) # Move the pointer to the top
+            file.truncate() # Delete all the entries in the file.
+            writer.writerows(data) # Write the updated rows to the file
+    except FileNotFoundError: # Exit the program, if the file doesn't exist.
+        print("There's no file to store and retrieve books.")
+        exit(1)
 
 # Menu loop
 def menu():
     while True:
-        print("\n1. Add Book\n2. List Books\n3. Search Book\n4. Quit")
+        print("\n1. Add Book\n2. List Books\n3. Search Book\n4. Delete Book\n5. Quit")
         choice = input("Select an option: ")
 
         if choice == '1':
@@ -49,6 +70,9 @@ def menu():
             title = input("Enter book title to search: ")
             search_book(title)
         elif choice == '4':
+            title = input("Enter book title to delete: ")
+            delete_book(title)
+        elif choice == '5':
             break
         else:
             print("Invalid choice. Try again.")
