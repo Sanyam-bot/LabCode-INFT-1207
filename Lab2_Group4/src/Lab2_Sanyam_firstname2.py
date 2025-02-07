@@ -26,18 +26,43 @@ def get_user_input_int(prompt, min_value, max_value):
 
 # Function to add a book to the reading list
 def add_book(title, author, year):
-    with open('books.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([title, author, year])
+    try:
+        with open('books.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([title, author, year])
+    except FileNotFoundError:
+        print("Error: The file wasn't found.")
+    except PermissionError:
+        print("Error: You don't have the permissions to write to the file.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 # Function to list all books
 def list_books():
-    with open('books.csv', mode='r') as file:
-        reader = csv.reader(file)
-        next(reader) # skips the first line
-        for row in reader:
-            print(f'Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
+    try:
+        with open('books.csv', mode='r') as file:
+            reader = csv.reader(file)
+            try:
+                next(reader)  # skips the first line
+            except StopIteration:
+                print("The file is empty.")
+                exit()
+
+            try:
+                for row in reader:
+                    print(f'Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
+            except IndexError:
+                print("Error: Empty row in the file.")
+
+    except FileNotFoundError:
+        print("Error: The file wasn't found.")
+    except PermissionError:
+        print("Error: You don't have the permissions to read this file.")
+    except csv.error as e:
+        print(f"Error: CSV format error {e}.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 # Function to search for a book by title
