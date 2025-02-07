@@ -54,6 +54,7 @@ def list_books():
                     print(f'Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
             except IndexError:
                 print("Error: Empty row in the file.")
+                exit()
 
     except FileNotFoundError:
         print("Error: The file wasn't found.")
@@ -67,14 +68,28 @@ def list_books():
 
 # Function to search for a book by title
 def search_book(title):
-    with open('books.csv', mode='r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            if row[0].lower() == title.lower():
-                print(f'Found: Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
-                return
-        print('Book not found')
+    try:
+        with open('books.csv', mode='r') as file:
+            reader = csv.reader(file)
+            try:
+                for row in reader:
+                    if row[0].lower() == title.lower():
+                        print(f'Found: Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
+                        return
+            except IndexError:
+                print("Error: Either the file is empty, or the file has empty rows.")
+                exit()
+            print('Book not found !!!')
+            print('Try again')
 
+    except FileNotFoundError:
+        print("Error: The file wasn't found.")
+    except PermissionError:
+        print("Error: You don't have the permissions to read this file.")
+    except csv.error as e:
+        print(f"Error: CSV format error {e}.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 # Function to delete a book
 def delete_book(title):
@@ -83,13 +98,16 @@ def delete_book(title):
             reader = csv.reader(file)
             data = list(reader) # Store the data into memory
             writer = csv.writer(file) # Creating a writer object to write to the file.
-            for row in data:
-                if row[0].lower() == title.lower(): # If the book exists, remove it from the list.
-                    data.remove(row)
-                    found = True
-                    break
-            else:
-                found = False
+            try:
+                for row in data:
+                    if row[0].lower() == title.lower(): # If the book exists, remove it from the list.
+                        data.remove(row)
+                        found = True
+                        break
+                else:
+                    found = False
+            except IndexError:
+                print("Error: Either the file is empty, or the file has empty rows.")
 
             if not found:
                 print("Error: There aren't any records of this book in the file.")
@@ -98,8 +116,13 @@ def delete_book(title):
             file.truncate() # Delete all the entries in the file.
             writer.writerows(data) # Write the updated rows to the file
     except FileNotFoundError: # Exit the program, if the file doesn't exist.
-        print("Error: There's no file to store and retrieve books.")
-        exit(1)
+        print("Error: The file wasn't found.")
+    except PermissionError:
+        print("Error: You don't have the permissions to read this file.")
+    except csv.error as e:
+        print(f"Error: CSV format error {e}.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 # Menu loop
 def menu():
