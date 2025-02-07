@@ -4,32 +4,25 @@ from sys import exit
 
 MINIMUM_YEAR = 1500
 
-# Function to get a String user input
-def get_user_string_input(prompt):
-    while True:
-        user_input = input(f"{prompt}: ")
-        if user_input:
-          return user_input # Return the input if it's not empty
-        print("Error: The input cannot be empty.")
-
-# Function to get an integer user input
-def get_user_input_int(prompt, min_value, max_value):
-    while True:
-        try:
-            user_input = int(input(f"{prompt}: "))
-            if min_value <= user_input <= max_value:
-                return user_input
-            else:
-                print(f"Error: Please enter a value between {min_value} and {max_value}.")
-        except ValueError:
-            print("Error: The input needs to be an integer.")
-
 # Function to add a book to the reading list
 def add_book(title, author, year):
+    today = date.today()  # Get today's date
+    if not title or not author or not year: # Making sure title, author and year aren't empty.
+        print('Error: The input cannot be empty for title, author, and year.')
+        return 1
+    try: # Try to cast year to an integer.
+        year = int(year)
+        if not MINIMUM_YEAR <= year <= today.year: # Making sure the year falls between 1500 and the current year.
+            print(f'The year needs to be between 1500 and {today.year}')
+            return 1
+    except ValueError:
+        print("Error: The year input needs to be an integer.")
+        return 1
     try:
         with open('books.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([title, author, year])
+            print(f'-- "{title}" successfully written to the csv file.')
     except FileNotFoundError:
         print("Error: The file wasn't found.")
     except PermissionError:
@@ -68,6 +61,9 @@ def list_books():
 
 # Function to search for a book by title
 def search_book(title):
+    if not title:
+        print('The title cannot be empty.')
+        return 1
     try:
         with open('books.csv', mode='r') as file:
             reader = csv.reader(file)
@@ -93,6 +89,9 @@ def search_book(title):
 
 # Function to delete a book
 def delete_book(title):
+    if not title:
+        print('The title cannot be empty.')
+        return 1
     try:
         with open('books.csv', mode='r+', newline='') as file: # The file needs to exist for this.
             reader = csv.reader(file)
@@ -102,6 +101,7 @@ def delete_book(title):
                 for row in data:
                     if row[0].lower() == title.lower(): # If the book exists, remove it from the list.
                         data.remove(row)
+                        print(f"-- Successfully deleted '{row[0]}'")
                         found = True
                         break
                 else:
@@ -131,18 +131,17 @@ def menu():
         choice = input("Select an option: ")
 
         if choice == '1':
-            today = date.today() # Get today's date
-            title = get_user_string_input("Enter book title")
-            author = get_user_string_input("Enter author name")
-            year = get_user_input_int("Enter year of publication", MINIMUM_YEAR, today.year)
+            title = input("Enter book title: ")
+            author = input("Enter author name: ")
+            year = input("Enter year of publication: ")
             add_book(title, author, year)
         elif choice == '2':
             list_books()
         elif choice == '3':
-            title = get_user_string_input("Enter book title to search")
+            title = input("Enter book title to search: ")
             search_book(title)
         elif choice == '4':
-            title = get_user_string_input("Enter book title to delete")
+            title = input("Enter book title to delete: ")
             delete_book(title)
         elif choice == '5':
             break
