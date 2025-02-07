@@ -60,7 +60,7 @@ def list_books():
         print("Error: The file wasn't found.")
     except PermissionError:
         print("Error: You don't have the permissions to read this file.")
-    except csv.error as e:
+    except csv.Error as e:
         print(f"Error: CSV format error {e}.")
     except Exception as e:
         print(f"Unexpected error: {e}")
@@ -86,7 +86,7 @@ def search_book(title):
         print("Error: The file wasn't found.")
     except PermissionError:
         print("Error: You don't have the permissions to read this file.")
-    except csv.error as e:
+    except csv.Error as e:
         print(f"Error: CSV format error {e}.")
     except Exception as e:
         print(f"Unexpected error: {e}")
@@ -119,7 +119,7 @@ def delete_book(title):
         print("Error: The file wasn't found.")
     except PermissionError:
         print("Error: You don't have the permissions to read this file.")
-    except csv.error as e:
+    except csv.Error as e:
         print(f"Error: CSV format error {e}.")
     except Exception as e:
         print(f"Unexpected error: {e}")
@@ -139,10 +139,10 @@ def menu():
         elif choice == '2':
             list_books()
         elif choice == '3':
-            title = input("Enter book title to search: ")
+            title = get_user_string_input("Enter book title to search")
             search_book(title)
         elif choice == '4':
-            title = input("Enter book title to delete: ")
+            title = get_user_string_input("Enter book title to delete")
             delete_book(title)
         elif choice == '5':
             break
