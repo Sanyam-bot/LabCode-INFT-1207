@@ -1,5 +1,28 @@
 import csv
+from datetime import date
 from sys import exit
+
+MINIMUM_YEAR = 1500
+
+# Function to get a String user input
+def get_user_string_input(prompt):
+    while True:
+        user_input = input(f"{prompt}: ")
+        if user_input:
+          return user_input # Return the input if it's not empty
+        print("Error: The input cannot be empty.")
+
+# Function to get an integer user input
+def get_user_input_int(prompt, min_value, max_value):
+    while True:
+        try:
+            user_input = int(input(f"{prompt}: "))
+            if min_value <= user_input <= max_value:
+                return user_input
+            else:
+                print(f"Error: Please enter a value between {min_value} and {max_value}.")
+        except ValueError:
+            print("Error: The input needs to be an integer.")
 
 # Function to add a book to the reading list
 def add_book(title, author, year):
@@ -44,13 +67,13 @@ def delete_book(title):
                 found = False
 
             if not found:
-                print("There aren't any records of this book in the file.")
+                print("Error: There aren't any records of this book in the file.")
 
             file.seek(0) # Move the pointer to the top
             file.truncate() # Delete all the entries in the file.
             writer.writerows(data) # Write the updated rows to the file
     except FileNotFoundError: # Exit the program, if the file doesn't exist.
-        print("There's no file to store and retrieve books.")
+        print("Error: There's no file to store and retrieve books.")
         exit(1)
 
 # Menu loop
@@ -60,9 +83,10 @@ def menu():
         choice = input("Select an option: ")
 
         if choice == '1':
-            title = input("Enter book title: ")
-            author = input("Enter author name: ")
-            year = input("Enter year of publication: ")
+            today = date.today() # Get today's date
+            title = get_user_string_input("Enter book title")
+            author = get_user_string_input("Enter author name")
+            year = get_user_input_int("Enter year of publication", MINIMUM_YEAR, today.year)
             add_book(title, author, year)
         elif choice == '2':
             list_books()
