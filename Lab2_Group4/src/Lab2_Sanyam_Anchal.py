@@ -1,6 +1,10 @@
 import csv
 from datetime import date
+import os
 from sys import exit
+
+# Change working directory to the project root
+os.chdir(os.path.dirname(os.path.dirname(__file__)))
 
 MINIMUM_YEAR = 1500
 
@@ -19,7 +23,7 @@ def add_book(title, author, year):
         print("Error: The year input needs to be an integer.")
         return 1
     try:
-        with open('books.csv', mode='a', newline='') as file:
+        with open('src/books.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([title, author, year])
             print(f'-- "{title}" successfully written to the csv file.')
@@ -34,7 +38,7 @@ def add_book(title, author, year):
 # Function to list all books
 def list_books():
     try:
-        with open('books.csv', mode='r') as file:
+        with open('src/books.csv', mode='r') as file:
             reader = csv.reader(file)
             try:
                 next(reader)  # skips the first line
@@ -65,7 +69,7 @@ def search_book(title):
         print('The title cannot be empty.')
         return 1
     try:
-        with open('books.csv', mode='r') as file:
+        with open('src/books.csv', mode='r') as file:
             reader = csv.reader(file)
             try:
                 for row in reader:
@@ -93,7 +97,7 @@ def delete_book(title):
         print('The title cannot be empty.')
         return 1
     try:
-        with open('books.csv', mode='r+', newline='') as file: # The file needs to exist for this.
+        with open('src/books.csv', mode='r+', newline='') as file: # The file needs to exist for this.
             reader = csv.reader(file)
             data = list(reader) # Store the data into memory
             writer = csv.writer(file) # Creating a writer object to write to the file.
