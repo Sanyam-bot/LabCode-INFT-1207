@@ -3,7 +3,7 @@ import os
 import csv
 import unittest
 from unittest.mock import patch
-from Lab2_Sanyam_Anchal import add_book, list_books, search_book, delete_book
+from src.Lab2_Sanyam_Anchal import add_book, list_books, search_book, delete_book
 
 # Change working directory to the project root
 os.chdir(os.path.dirname(os.path.dirname(__file__)))
