@@ -27,6 +27,7 @@ def add_book(title, author, year):
             writer = csv.writer(file)
             writer.writerow([title, author, year])
             print(f'-- "{title}" successfully written to the csv file.')
+            return 0
     except FileNotFoundError:
         print("Error: The file wasn't found.")
     except PermissionError:
@@ -44,14 +45,15 @@ def list_books():
                 next(reader)  # skips the first line
             except StopIteration:
                 print("The file is empty.")
-                exit()
+                return 1
 
             try:
                 for row in reader:
                     print(f'Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
+                return 0
             except IndexError:
                 print("Error: Empty row in the file.")
-                exit()
+                return 1
 
     except FileNotFoundError:
         print("Error: The file wasn't found.")
@@ -75,13 +77,13 @@ def search_book(title):
                 for row in reader:
                     if row[0].lower() == title.lower():
                         print(f'Found: Title: {row[0]}, Author: {row[1]}, Year: {row[2]}')
-                        return
+                        return 0
             except IndexError:
                 print("Error: Either the file is empty, or the file has empty rows.")
                 exit()
             print('Book not found !!!')
             print('Try again')
-
+            return 1
     except FileNotFoundError:
         print("Error: The file wasn't found.")
     except PermissionError:
@@ -107,7 +109,7 @@ def delete_book(title):
                         data.remove(row)
                         print(f"-- Successfully deleted '{row[0]}'")
                         found = True
-                        break
+                        return 0
                 else:
                     found = False
             except IndexError:
@@ -115,6 +117,7 @@ def delete_book(title):
 
             if not found:
                 print("Error: There aren't any records of this book in the file.")
+                return 1
 
             file.seek(0) # Move the pointer to the top
             file.truncate() # Delete all the entries in the file.
@@ -127,6 +130,7 @@ def delete_book(title):
         print(f"Error: CSV format error {e}.")
     except Exception as e:
         print(f"Unexpected error: {e}")
+    return 1
 
 # Menu loop
 def menu():
