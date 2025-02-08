@@ -107,9 +107,8 @@ def delete_book(title):
                 for row in data:
                     if row[0].lower() == title.lower(): # If the book exists, remove it from the list.
                         data.remove(row)
-                        print(f"-- Successfully deleted '{row[0]}'")
                         found = True
-                        return 0
+                        break
                 else:
                     found = False
             except IndexError:
@@ -122,6 +121,9 @@ def delete_book(title):
             file.seek(0) # Move the pointer to the top
             file.truncate() # Delete all the entries in the file.
             writer.writerows(data) # Write the updated rows to the file
+            print(f"-- Successfully deleted '{row[0]}'")
+            return 0
+
     except FileNotFoundError: # Exit the program, if the file doesn't exist.
         print("Error: The file wasn't found.")
     except PermissionError:
