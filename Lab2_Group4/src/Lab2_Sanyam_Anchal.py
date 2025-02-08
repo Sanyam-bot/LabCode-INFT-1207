@@ -1,3 +1,9 @@
+# Name: Sanyam Singh Sachdeva(100963204) and Anchalpreet kaur(100960062)
+# Date: Feb 7, 2025
+# Name of the program: Reading list manager
+# Description: This is a command-line book management system that lets users add, list, search,
+# and delete books stored in a CSV file. It includes error handling and unit tests to ensure functionality and data integrity.
+
 import csv
 from datetime import date
 import os
