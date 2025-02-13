@@ -33,6 +33,8 @@ def process_temperatures(temp_list):
 
     except ValueError:
         return "Error: Invalid input detected."
+    except OverflowError:
+        return "Error: The input is too large to convert to float."
 
 # test_cases = [
 #     [20], # Normal
