@@ -58,8 +58,8 @@ class TestTemperatureSensor(unittest.TestCase):
             custom_min([])
 
     def test_custom_min_normal(self):
-        result = custom_min([0, 4, 6, 1])
-        self.assertEqual(result, 0)
+        result = custom_min([0, 4, 6, 1, -9])
+        self.assertEqual(result, -9)
 
     def test_custom_max_TypeError(self):
         with self.assertRaises(TypeError):
