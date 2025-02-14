@@ -11,6 +11,38 @@ import statistics
 TEMPERATURE_LOWER_BOUND = -50
 TEMPERATURE_UPPER_BOUND = 150
 
+def custom_min(iterable):
+    if not hasattr(iterable, "__iter__"): # Checking if the custom_min() arg is iterable.
+        raise TypeError("custom_min() argument must be an iterable.")
+
+    iterator = iter(iterable) # Converting it to iterator, so the next() can be used.
+
+    try:
+        minimum = next(iterator)
+    except StopIteration:
+        raise ValueError("custom_min() arg is an empty sequence")
+
+    for item in iterator:
+        if item < minimum:
+            minimum = item
+    return minimum
+
+def custom_max(iterable):
+    if not hasattr(iterable, "__iter__"):  # Checking if the custom_min() arg is iterable.
+        raise TypeError("custom_max() argument must be an iterable.")
+
+    iterator = iter(iterable)  # Converting it to iterator, so the next() can be used.
+
+    try:
+        maximum = next(iterator)
+    except StopIteration:
+        raise ValueError("custom_max() arg is an empty sequence")
+
+    for item in iterator:
+        if item > maximum:
+            maximum = item
+    return maximum
+
 def validate_temperature(value):
     if TEMPERATURE_LOWER_BOUND <= value <= TEMPERATURE_UPPER_BOUND:
         return value
@@ -25,8 +57,8 @@ def process_temperatures(temp_list):
         if not valid_temps:
             return "Error: No valid input provided."
 
-        min_temp = min(valid_temps)
-        max_temp = max(valid_temps)
+        min_temp = custom_min(valid_temps)
+        max_temp = custom_max(valid_temps)
         avg_temp = round(statistics.mean(valid_temps), 2)
 
         return f"Min: {min_temp}°C, Max: {max_temp}°C, Avg: {avg_temp}°C"
@@ -35,18 +67,3 @@ def process_temperatures(temp_list):
         return "Error: Invalid input detected."
     except OverflowError:
         return "Error: The input is too large to convert to float."
-
-# test_cases = [
-#     [20], # Normal
-#     [15, 35], # Normal
-#     [], # Empty
-#     [10, -10, 30], # Normal
-#     [-50, 20, 150, 25], # Normal
-#     [10, "abc", 30], # Invalid type
-#     [2**31 - 1, -2**31], # Exceeding the limit of integer.
-#     [10, 10, 10], # Normal
-#     [-50],  # Lower boundary
-#     [150],  # Upper boundary
-#     [-49, 149],  # Values inside range
-#     [100, 160]
-# ]
