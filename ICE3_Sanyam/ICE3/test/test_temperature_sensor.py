@@ -1,5 +1,5 @@
 import unittest
-from ICE3.src.temperature_sensor import process_temperatures
+from ICE3.src.temperature_sensor import process_temperatures, custom_min, custom_max
 
 class TestTemperatureSensor(unittest.TestCase):
     # Boundary Value Analysis(BVA)
@@ -48,3 +48,27 @@ class TestTemperatureSensor(unittest.TestCase):
     def test_process_temperature_with_empty_input(self):
         result = process_temperatures([])
         self.assertEqual(result, "Error: No valid input provided.")
+
+    def test_custom_min_TypeError(self):
+        with self.assertRaises(TypeError):
+            custom_min(45)
+
+    def test_custom_min_ValueError(self):
+        with self.assertRaises(ValueError):
+            custom_min([])
+
+    def test_custom_min_normal(self):
+        result = custom_min([0, 4, 6, 1])
+        self.assertEqual(result, 0)
+
+    def test_custom_max_TypeError(self):
+        with self.assertRaises(TypeError):
+            custom_max(45)
+
+    def test_custom_max_ValueError(self):
+        with self.assertRaises(ValueError):
+            custom_max([])
+
+    def test_custom_max_normal(self):
+        result = custom_max([0, 4, 6, 1])
+        self.assertEqual(result, 6)
