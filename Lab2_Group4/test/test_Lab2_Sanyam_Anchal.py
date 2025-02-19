@@ -5,9 +5,6 @@ import unittest
 from unittest.mock import patch
 from src.Lab2_Sanyam_Anchal import add_book, list_books, search_book, delete_book
 
-# Change working directory to the project root
-os.chdir(os.path.dirname(os.path.dirname(__file__)))
-
 
 class TestReadingList(unittest.TestCase):
     def test_add_book(self):
