@@ -3,6 +3,8 @@ from math import pi
 
 def circle_area(r):
     if isinstance(r, (int, float)) and r >= 0:
+        if r > 1e308:
+            raise ValueError("Radius is too large to calculate the area.")
         return pi * (r ** 2)
     else:
         raise ValueError("Invalid radius. Must be a non-negative number.")
