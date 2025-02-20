@@ -32,10 +32,13 @@ class TestShapes(unittest.TestCase):
     def test_circle_area_invalid_negative(self):
         with self.assertRaises(ValueError):
             circle_area(-1)
-    @unittest.skip
-    def test_circle_area_invalid_large_number(self):
-        with self.assertRaises(ValueError):
-            circle_area(10**10000000)
+
+    def test_circle_area_valid_floating_precision(self):
+        self.assertEqual(circle_area(5.2265), 85.81669)
+
+    def test_circle_area_small_values(self):
+        self.assertEqual(circle_area(0.0001), 3.141592653589793e-08)
+
 
     def test_trapezium_area_valid_integers(self):
         self.assertEqual(trapezium_area(5, 23, 40), 560)

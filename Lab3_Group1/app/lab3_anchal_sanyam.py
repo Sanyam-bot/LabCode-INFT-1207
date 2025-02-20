@@ -2,8 +2,6 @@ from math import pi
 
 def circle_area(r):
     if isinstance(r, (int, float)) and r >= 0:
-        if r > 1e308:
-            raise ValueError("Radius is too large to calculate the area.")
         result = pi * (r ** 2)
         result_rounded = round(result, 5)
         if result_rounded == 0:  # If the result after rounding is zero, return without rounding
