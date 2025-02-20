@@ -1,6 +1,5 @@
 from math import pi
 
-
 def circle_area(r):
     if isinstance(r, (int, float)) and r >= 0:
         if r > 1e308:
@@ -24,7 +23,16 @@ def trapezium_area(a, b, h):
         raise TypeError("The value needs to be numeric.")
 
 def ellipse_area(a, b):
-    return pi * a * b
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        if a <= 0 or b <= 0:
+            raise ValueError("Invalid side length. Must be a positive number.")
+        result = pi * a * b
+        result_rounded = round(result, 5)
+        if result_rounded == 0: # If the result after rounding is zero, return without rounding
+            return result
+        return result_rounded
+    else:
+        raise TypeError("The value needs to be numeric.")
 
 
 def rhombus_area(d1, d2):

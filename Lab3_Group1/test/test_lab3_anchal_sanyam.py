@@ -71,11 +71,36 @@ class TestShapes(unittest.TestCase):
     def test_trapezium_area_small_values(self):
         self.assertEqual(trapezium_area(0.0001, 0.0001, 0.0001), 1e-08)
 
-    def test_ellipse_area_valid(self):
-        pass
+    def test_ellipse_area_valid_integers(self):
+        self.assertEqual(ellipse_area(5, 23), 361.28316)
 
-    def test_ellipse_area_invalid(self):
-        pass
+    def test_ellipse_area_valid_floats(self):
+        self.assertEqual(ellipse_area(5.9, 23.7), 439.2889)
+
+    def test_ellipse_area_valid_with_one(self):
+        self.assertEqual(ellipse_area(1, 1), round(pi, 5))
+
+    def test_ellipse_area_valid_with_equal_sides(self):
+        self.assertEqual(ellipse_area(5, 5), 78.53982)
+
+    def test_ellipse_area_valid_floating_precision(self):
+        self.assertEqual(ellipse_area(5.2265, 2.2355), 36.70587)
+
+    def test_ellipse_area_invalid_with_side_zero(self):
+        with self.assertRaises(ValueError):
+            ellipse_area(5, 0)
+
+    def test_ellipse_area_invalid_with_negative(self):
+        with self.assertRaises(ValueError):
+            ellipse_area(-5, 10)
+
+    def test_ellipse_area_invalid_non_numeric(self):
+        with self.assertRaises(TypeError):
+            ellipse_area(6, "100")
+
+    def test_ellipse_area_small_values(self):
+        self.assertEqual(ellipse_area(0.0001, 0.0001), 3.141592653589793e-08)
+
 
     def test_rhombus_area_valid(self):
         pass
