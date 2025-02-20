@@ -5,14 +5,23 @@ def circle_area(r):
     if isinstance(r, (int, float)) and r >= 0:
         if r > 1e308:
             raise ValueError("Radius is too large to calculate the area.")
-        return pi * (r ** 2)
+        return round(pi * (r ** 2), 5)
     else:
         raise ValueError("Invalid radius. Must be a non-negative number.")
 
 
 def trapezium_area(a, b, h):
-    return 0.5 * (a + b) * h
-
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(h, (int, float)):
+        if a <= 0 or b <= 0:
+            raise ValueError("Invalid side length. Must be a positive number.")
+        if h <= 0:
+            raise ValueError("Invalid height. Must be a positive number.")
+        result = 0.5 * (a + b) * h
+        if len(str(result).split(".")[-1]) > 5: # If the result is more than five decimals, round it to five decimal places
+            return round(result, 5)
+        return result
+    else:
+        raise TypeError("The value needs to be numeric.")
 
 def ellipse_area(a, b):
     return pi * a * b
