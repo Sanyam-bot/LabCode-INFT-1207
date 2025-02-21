@@ -1,3 +1,7 @@
+# Name: Anchalpreet kaur and Sanyam Singh Sachdeva
+# Name of the program: Area Calculator test cases
+# Date: Feb 20, 2025
+# Description: Test cases for circle_area, trapezium_area, ellipse_area, and rhombus_area
 from math import pi
 import unittest
 from app.lab3_anchal_sanyam import circle_area, trapezium_area, ellipse_area, rhombus_area

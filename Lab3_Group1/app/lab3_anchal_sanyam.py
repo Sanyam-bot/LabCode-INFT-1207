@@ -1,3 +1,8 @@
+# Name: Anchalpreet kaur and Sanyam Singh Sachdeva
+# Name of the program: Area Calculator
+# Date: Feb 20, 2025
+# Description: Functions to calculate the area of circle, trapezium, ellipse, and rhombus.
+
 from math import pi
 
 def circle_area(r):
