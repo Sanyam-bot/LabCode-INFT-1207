@@ -1,14 +1,47 @@
 import unittest
 
 def run_tests(choice):
+    suite = unittest.TestSuite()
     if choice == 'c':
-        suite = unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid')
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid_int'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid_float'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid_zero'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid_one'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_invalid_non_numeric'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_invalid_negative'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_valid_floating_precision'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_circle_area_small_values'))
     elif choice == 't':
-        suite = unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid')
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid_integers'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid_floats'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid_with_one'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid_with_equal_bases'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_valid_floating_precision'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_invalid_with_zero_height'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_invalid_with_zero_base'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_invalid_with_negative'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_invalid_non_numeric'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_trapezium_area_small_values'))
     elif choice == 'e':
-        suite = unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid')
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid_integers'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid_floats'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid_with_one'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid_with_equal_sides'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_valid_floating_precision'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_invalid_with_side_zero'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_invalid_with_negative'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_invalid_non_numeric'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_ellipse_area_small_values'))
     elif choice == 'r':
-        suite = unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid')
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid_integers'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid_floats'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid_with_one'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid_with_equal_sides'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_valid_floating_precision'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_invalid_with_side_zero'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_invalid_with_negative'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_invalid_non_numeric'))
+        suite.addTest(unittest.defaultTestLoader.loadTestsFromName('test.test_lab3_anchal_sanyam.TestShapes.test_rhombus_area_small_values'))
     else:
         print("Invalid choice. Exiting.")
         return
