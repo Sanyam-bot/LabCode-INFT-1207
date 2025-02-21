@@ -104,12 +104,35 @@ class TestShapes(unittest.TestCase):
     def test_ellipse_area_small_values(self):
         self.assertEqual(ellipse_area(0.0001, 0.0001), 3.141592653589793e-08)
 
+    def test_rhombus_area_valid_integers(self):
+        self.assertEqual(rhombus_area(5, 23), 57.5)
 
-    def test_rhombus_area_valid(self):
-        pass
+    def test_rhombus_area_valid_floats(self):
+        self.assertEqual(rhombus_area(5.9, 23.7), 69.915)
 
-    def test_rhombus_area_invalid(self):
-        pass
+    def test_rhombus_area_valid_with_one(self):
+        self.assertEqual(rhombus_area(1, 1), 0.5)
+
+    def test_rhombus_area_valid_with_equal_sides(self):
+        self.assertEqual(rhombus_area(5, 5), 12.5)
+
+    def test_rhombus_area_valid_floating_precision(self):
+        self.assertEqual(rhombus_area(5.2265, 2.2355), 5.84192)
+
+    def test_rhombus_area_invalid_with_side_zero(self):
+        with self.assertRaises(ValueError):
+            rhombus_area(5, 0)
+
+    def test_rhombus_area_invalid_with_negative(self):
+        with self.assertRaises(ValueError):
+            rhombus_area(-5, 10)
+
+    def test_rhombus_area_invalid_non_numeric(self):
+        with self.assertRaises(TypeError):
+            rhombus_area(6, "100")
+
+    def test_rhombus_area_small_values(self):
+        self.assertEqual(rhombus_area(0.0001, 0.0001), 5e-09)
 
 if __name__ == "__main__":
     unittest.main()

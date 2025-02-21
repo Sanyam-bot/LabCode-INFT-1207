@@ -39,4 +39,13 @@ def ellipse_area(a, b):
 
 
 def rhombus_area(d1, d2):
-    return 0.5 * d1 * d2
+    if isinstance(d1, (int, float)) and isinstance(d2, (int, float)):
+        if d1 <= 0 or d2 <= 0:
+            raise ValueError("Invalid side length. Must be a positive number.")
+        result = 0.5 * d1 * d2
+        result_rounded = round(result, 5)
+        if result_rounded == 0: # If the result after rounding is zero, return without rounding
+            return result
+        return result_rounded
+    else:
+        raise TypeError("The value needs to be numeric.")
