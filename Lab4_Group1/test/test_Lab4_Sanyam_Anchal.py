@@ -23,6 +23,24 @@ class TestDefaultSuite:
         """Quits the driver after all test ran."""
         cls.driver.quit()
 
+    def test_clear_btn(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+        age_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
+        weight_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
+        height_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
+        neck_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
+        waist_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
+
+        # Check If the values are empty
+        assert age_value == ""
+        assert weight_value == ""
+        assert height_value == ""
+        assert neck_value == ""
+        assert waist_value == ""
+
+        print(f"Clear Button Result: Clears the text fields.")
+
+
     def test_male_valid(self):
         self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
         self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
