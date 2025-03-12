@@ -353,3 +353,23 @@ class TestDefaultSuite:
         assert waist_error_message.text == "Waist need to be numeric."
         print(f"Female Test Case Result Waist Error: {waist_error_message.text}")
 
+    def test_female_empty_hip(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+        self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        self.driver.find_element(By.NAME, "cage").click()  # Age
+        self.driver.find_element(By.NAME, "cage").send_keys("24")  # Send keys to Age
+        self.driver.find_element(By.NAME, "cweightkgs").click()  # Weight
+        self.driver.find_element(By.NAME, "cweightkgs").send_keys("70")  # Send keys to Weight
+        self.driver.find_element(By.ID, "cheightmeter").click()  # Height
+        self.driver.find_element(By.ID, "cheightmeter").send_keys("170")  # Send keys to Height
+        self.driver.find_element(By.ID, "cneckmeter").click()  # Neck
+        self.driver.find_element(By.ID, "cneckmeter").send_keys("50")  # Send keys to Neck
+        self.driver.find_element(By.ID, "cwaistmeter").click()  # Waist
+        self.driver.find_element(By.ID, "cwaistmeter").send_keys("80")  # Send keys to Waist
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        hip_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Hip need to be numeric.')]")
+
+        assert hip_error_message.text == "Hip need to be numeric."
+        print(f"Female Test Case Result Hip Error: {hip_error_message.text}")
