@@ -6,7 +6,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-GENDER = "female"
+GENDER = "male"
 
 class TestDefaultSuite:
     @classmethod
@@ -84,7 +84,7 @@ class TestDefaultSuite:
             assert result_text == "Body Fat: 31.0%"
         else:
             assert result_text == "Body Fat: 20.1%"
-        print(f"{GENDER.upper()} Test Case Result: {result_text}")
+        print(f"{GENDER.capitalize()} Test Case Result: {result_text}")
 
     def test_with_all_invalid_inputs(self):
         self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
@@ -121,4 +121,105 @@ class TestDefaultSuite:
         if GENDER == "female":
             assert hip_error_message.text == "Hip need to be numeric."
             print(f"{GENDER.capitalize()} Test Case Result Waist Error: {waist_error_message.text}")
+
+    def test_with_empty_age(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("", "70", "170", "50", "100")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        age_error_message = self.driver.find_element(By.XPATH,"//font[contains(text(), 'Please provide a positive age.')]")
+
+        assert age_error_message.text == "Please provide a positive age."
+        print(f"{GENDER.capitalize()} Test Case With Empty Age Error: {age_error_message.text}")
+
+    def test_with_empty_weight(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("50", "", "170", "50", "100")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        weight_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Please provide a positive weight.')]")
+
+        assert weight_error_message.text == "Please provide a positive weight."
+        print(f"{GENDER.capitalize()} Test Case Result Weight Error: {weight_error_message.text}")
+
+    def test_with_empty_height(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("50", "70", "", "50", "100")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        height_error_message = self.driver.find_element(By.XPATH,"//font[contains(text(), 'Height need to be positive.')]")
+
+        assert height_error_message.text == "Height need to be positive."
+        print(f"{GENDER.capitalize()} Test Case With Empty Height Error: {height_error_message.text}")
+
+    def test_with_empty_neck(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("50", "70", "170", "", "100")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        neck_error_message = self.driver.find_element(By.XPATH,"//font[contains(text(), 'Neck need to be numeric.')]")
+
+        assert neck_error_message.text == "Neck need to be numeric."
+        print(f"{GENDER.capitalize()} Test Case With Empty Neck Error: {neck_error_message.text}")
+
+    def test_with_empty_waist(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("50", "70", "170", "50", "")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        waist_error_message = self.driver.find_element(By.XPATH,"//font[contains(text(), 'Waist need to be numeric.')]")
+
+        assert waist_error_message.text == "Waist need to be numeric."
+        print(f"{GENDER.capitalize()} Test Case With Empty Waist Error: {waist_error_message.text}")
 
