@@ -360,6 +360,409 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "81892b79-9999-426c-a411-129f6f28b080",
+    "name": "female_invalid",
+    "commands": [{
+      "id": "9511d46c-424c-4a26-a893-979b4a5b8f44",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.calculator.net/body-fat-calculator.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "affb4c59-8ffa-462f-ae7a-1693034181d1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1111x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "93a624a5-0c54-4271-b3f5-e8dfd7b644c5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.cbcontainer:nth-child(2) > .rbmark",
+      "targets": [
+        ["css=.cbcontainer:nth-child(2) > .rbmark", "css:finder"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr/td[2]/label[2]/span", "xpath:idRelative"],
+        ["xpath=//label[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98e93933-d01e-42c3-95fe-f62e0483807a",
+      "comment": "",
+      "command": "click",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9a4cb5c-3454-434f-b121-70488066f25d",
+      "comment": "",
+      "command": "type",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "twen"
+    }, {
+      "id": "30b399db-54b1-4e67-afe9-dacfe2f122d3",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_DOWN}"
+    }, {
+      "id": "57227eee-ada4-4e38-b5e7-dcf3534bc939",
+      "comment": "",
+      "command": "type",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "twenty five"
+    }, {
+      "id": "09aaaf19-2975-4f64-80d3-e88d31452af6",
+      "comment": "",
+      "command": "click",
+      "target": "name=cweightkgs",
+      "targets": [
+        ["name=cweightkgs", "name"],
+        ["css=tr:nth-child(1) .inuick", "css:finder"],
+        ["xpath=//input[@name='cweightkgs']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c2ba242-483e-4a27-9915-1587d3a8ad4f",
+      "comment": "",
+      "command": "type",
+      "target": "name=cweightkgs",
+      "targets": [
+        ["name=cweightkgs", "name"],
+        ["css=tr:nth-child(1) .inuick", "css:finder"],
+        ["xpath=//input[@name='cweightkgs']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": "h"
+    }, {
+      "id": "45b599a5-721e-4a0b-a690-fab3d86db4e5",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=cweightkgs",
+      "targets": [
+        ["name=cweightkgs", "name"],
+        ["css=tr:nth-child(1) .inuick", "css:finder"],
+        ["xpath=//input[@name='cweightkgs']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_DOWN}"
+    }, {
+      "id": "f3f35d02-449c-41a7-ae4d-f52312ac4b6c",
+      "comment": "",
+      "command": "type",
+      "target": "name=cweightkgs",
+      "targets": [
+        ["name=cweightkgs", "name"],
+        ["css=tr:nth-child(1) .inuick", "css:finder"],
+        ["xpath=//input[@name='cweightkgs']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": "hi"
+    }, {
+      "id": "6a255581-5c96-4f5b-91c7-df13b2b073cc",
+      "comment": "",
+      "command": "click",
+      "target": "id=cheightmeter",
+      "targets": [
+        ["id=cheightmeter", "id"],
+        ["name=cheightmeter", "name"],
+        ["css=#cheightmeter", "css:finder"],
+        ["xpath=//input[@id='cheightmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ecf82c0-b79d-4bdc-854b-06b9f3be31c7",
+      "comment": "",
+      "command": "type",
+      "target": "id=cheightmeter",
+      "targets": [
+        ["id=cheightmeter", "id"],
+        ["name=cheightmeter", "name"],
+        ["css=#cheightmeter", "css:finder"],
+        ["xpath=//input[@id='cheightmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "the"
+    }, {
+      "id": "7f6f1b22-c2eb-40b8-8921-ddf1cb16d4c2",
+      "comment": "",
+      "command": "click",
+      "target": "id=cneckmeter",
+      "targets": [
+        ["id=cneckmeter", "id"],
+        ["name=cneckmeter", "name"],
+        ["css=#cneckmeter", "css:finder"],
+        ["xpath=//input[@id='cneckmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "963968f7-2b90-4660-9976-25b58bf01e88",
+      "comment": "",
+      "command": "type",
+      "target": "id=cneckmeter",
+      "targets": [
+        ["id=cneckmeter", "id"],
+        ["name=cneckmeter", "name"],
+        ["css=#cneckmeter", "css:finder"],
+        ["xpath=//input[@id='cneckmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "bye"
+    }, {
+      "id": "fe5aff93-0c57-448d-a02d-3378c13506f5",
+      "comment": "",
+      "command": "click",
+      "target": "id=cwaistmeter",
+      "targets": [
+        ["id=cwaistmeter", "id"],
+        ["name=cwaistmeter", "name"],
+        ["css=#cwaistmeter", "css:finder"],
+        ["xpath=//input[@id='cwaistmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "77737986-1231-421d-86ac-e011e5b0eed8",
+      "comment": "",
+      "command": "type",
+      "target": "id=cwaistmeter",
+      "targets": [
+        ["id=cwaistmeter", "id"],
+        ["name=cwaistmeter", "name"],
+        ["css=#cwaistmeter", "css:finder"],
+        ["xpath=//input[@id='cwaistmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "str"
+    }, {
+      "id": "5e13434b-7181-4e5a-aa9a-79a707e857a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=chipmeter",
+      "targets": [
+        ["id=chipmeter", "id"],
+        ["name=chipmeter", "name"],
+        ["css=#chipmeter", "css:finder"],
+        ["xpath=//input[@id='chipmeter']", "xpath:attributes"],
+        ["xpath=//span[@id='metrichiptable']/input", "xpath:idRelative"],
+        ["xpath=//span/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f00abccb-2fbd-47d7-b020-b2bce0d25617",
+      "comment": "",
+      "command": "type",
+      "target": "id=chipmeter",
+      "targets": [
+        ["id=chipmeter", "id"],
+        ["name=chipmeter", "name"],
+        ["css=#chipmeter", "css:finder"],
+        ["xpath=//input[@id='chipmeter']", "xpath:attributes"],
+        ["xpath=//span[@id='metrichiptable']/input", "xpath:idRelative"],
+        ["xpath=//span/input", "xpath:position"]
+      ],
+      "value": "string"
+    }, {
+      "id": "cf4d5de6-0451-4319-bef9-56bc3e46081c",
+      "comment": "",
+      "command": "click",
+      "target": "name=x",
+      "targets": [
+        ["name=x", "name"],
+        ["css=table:nth-child(4) input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='x']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div[3]/div[2]/form/table[4]/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//table[4]/tbody/tr/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e3b5171f-3ee6-4b57-aee9-a74e28f5926b",
+    "name": "female_valid",
+    "commands": [{
+      "id": "96109515-52ff-4330-bbe1-0fa0a86975ab",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.calculator.net/body-fat-calculator.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a94d4fe-4398-4b31-82dc-7bb38b3dd927",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1111x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e1ddc384-8f46-4c05-91b0-2e6aecb7d891",
+      "comment": "",
+      "command": "click",
+      "target": "css=.cbcontainer:nth-child(2)",
+      "targets": [
+        ["css=.cbcontainer:nth-child(2)", "css:finder"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr/td[2]/label[2]", "xpath:idRelative"],
+        ["xpath=//label[2]", "xpath:position"],
+        ["xpath=//label[contains(.,'female')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d35de52-af0d-4de9-8fab-589c9ce0ac19",
+      "comment": "",
+      "command": "click",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40efe4fb-7d96-43f7-89af-c43884a5d406",
+      "comment": "",
+      "command": "type",
+      "target": "name=cage",
+      "targets": [
+        ["name=cage", "name"],
+        ["css=tbody:nth-child(2) .inlongest", "css:finder"],
+        ["xpath=//input[@name='cage']", "xpath:attributes"],
+        ["xpath=//table[@id='calinputtable']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "34"
+    }, {
+      "id": "1178fed9-9aaa-40b5-aa62-fd4cd51c2044",
+      "comment": "",
+      "command": "type",
+      "target": "name=cweightkgs",
+      "targets": [
+        ["name=cweightkgs", "name"],
+        ["css=tr:nth-child(1) .inuick", "css:finder"],
+        ["xpath=//input[@name='cweightkgs']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": "80"
+    }, {
+      "id": "39eb03f9-9f23-412b-8cfe-4361982bdd0b",
+      "comment": "",
+      "command": "type",
+      "target": "id=cheightmeter",
+      "targets": [
+        ["id=cheightmeter", "id"],
+        ["name=cheightmeter", "name"],
+        ["css=#cheightmeter", "css:finder"],
+        ["xpath=//input[@id='cheightmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[3]/tbody/tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "180"
+    }, {
+      "id": "55efedf2-25bd-4da9-bfb8-1e42864345d4",
+      "comment": "",
+      "command": "type",
+      "target": "id=cneckmeter",
+      "targets": [
+        ["id=cneckmeter", "id"],
+        ["name=cneckmeter", "name"],
+        ["css=#cneckmeter", "css:finder"],
+        ["xpath=//input[@id='cneckmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "60"
+    }, {
+      "id": "3cce1c31-dacb-4d88-9365-0a917fe9a87e",
+      "comment": "",
+      "command": "type",
+      "target": "id=cwaistmeter",
+      "targets": [
+        ["id=cwaistmeter", "id"],
+        ["name=cwaistmeter", "name"],
+        ["css=#cwaistmeter", "css:finder"],
+        ["xpath=//input[@id='cwaistmeter']", "xpath:attributes"],
+        ["xpath=//table[@id='metricheightweight']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "f110fb47-b9b7-4734-bce5-48096983169b",
+      "comment": "",
+      "command": "type",
+      "target": "id=chipmeter",
+      "targets": [
+        ["id=chipmeter", "id"],
+        ["name=chipmeter", "name"],
+        ["css=#chipmeter", "css:finder"],
+        ["xpath=//input[@id='chipmeter']", "xpath:attributes"],
+        ["xpath=//span[@id='metrichiptable']/input", "xpath:idRelative"],
+        ["xpath=//span/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "8e736d4f-7903-41ae-8699-7854746199ac",
+      "comment": "",
+      "command": "click",
+      "target": "name=x",
+      "targets": [
+        ["name=x", "name"],
+        ["css=table:nth-child(4) input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='x']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div[3]/div[2]/form/table[4]/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//table[4]/tbody/tr/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6df0cd91-38c0-43a5-9920-02a01f74f576",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "aacdb5f9-d122-417d-9d50-eceb935bdf66",
@@ -369,6 +772,6 @@
     "timeout": 300,
     "tests": ["769c2040-38c3-41c6-87ba-1717ce7a4cc4", "066aa638-7162-4afa-bc0e-62c3f93a54c6"]
   }],
-  "urls": ["https://www.calculator.net/"],
+  "urls": ["https://www.calculator.net/", "https://www.calculator.net/body-fat-calculator.html"],
   "plugins": []
 }
