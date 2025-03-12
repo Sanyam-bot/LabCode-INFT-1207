@@ -64,9 +64,27 @@ class TestDefaultSuite:
         print(f"Clear Button Result: Clears the text fields.")
 
 
+    def test_with_valid_inputs(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("24", "70", "170", "50", "100")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("98")
+
         # Calculate and verify the result
         self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
-        waist_error_message = self.driver.find_element(By.XPATH,"//font[contains(text(), 'Waist need to be numeric.')]")
+        result_text = self.driver.find_element(By.CSS_SELECTOR, "font > b").text
+        if GENDER == "female":
+            assert result_text == "Body Fat: 31.0%"
+        else:
+            assert result_text == "Body Fat: 20.1%"
+        print(f"{GENDER.upper()} Test Case Result: {result_text}")
 
         assert waist_error_message.text == "Waist need to be numeric."
         print(f"Male Test Case With Empty Age Error: {waist_error_message.text}")
