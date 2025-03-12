@@ -211,3 +211,41 @@ class TestDefaultSuite:
         result_text = self.driver.find_element(By.CSS_SELECTOR, "font > b").text
         assert result_text == "Body Fat: 17.7%"
         print(f"Female Test Case Result: {result_text}")
+
+    def test_female_all_invalid_type(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+        self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(2) > .rbmark").click()  # Select the male radio button
+        self.driver.find_element(By.NAME, "cage").click()  # Age
+        self.driver.find_element(By.NAME, "cage").send_keys("twenty four")  # Send keys to Age
+        self.driver.find_element(By.NAME, "cweightkgs").click()  # Weight
+        self.driver.find_element(By.NAME, "cweightkgs").send_keys("seventy")  # Send keys to Weight
+        self.driver.find_element(By.ID, "cheightmeter").click()  # Height
+        self.driver.find_element(By.ID, "cheightmeter").send_keys("one seventy")  # Send keys to Height
+        self.driver.find_element(By.ID, "cneckmeter").click()  # Neck
+        self.driver.find_element(By.ID, "cneckmeter").send_keys("fifty")  # Send keys to Neck
+        self.driver.find_element(By.ID, "cwaistmeter").click()  # Waist
+        self.driver.find_element(By.ID, "cwaistmeter").send_keys("hundred")  # Send keys to Waist
+        self.driver.find_element(By.ID, "chipmeter").click() # Hip
+        self.driver.find_element(By.ID, "chipmeter").send_keys("Ninety") # Send keys to Hip
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        age_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Please provide a positive age.')]")
+        weight_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Please provide a positive weight.')]")
+        height_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Height need to be positive.')]")
+        neck_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Neck need to be numeric.')]")
+        waist_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Waist need to be numeric.')]")
+        hip_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Hip need to be numeric.')]")
+
+        assert age_error_message.text == "Please provide a positive age."
+        assert weight_error_message.text == "Please provide a positive weight."
+        assert height_error_message.text == "Height need to be positive."
+        assert neck_error_message.text == "Neck need to be numeric."
+        assert waist_error_message.text == "Waist need to be numeric."
+        assert hip_error_message.text == "Hip need to be numeric."
+        print(f"Male Test Case Result Age Error: {age_error_message.text}")
+        print(f"Male Test Case Result Weight Error: {weight_error_message.text}")
+        print(f"Male Test Case Result Height Error: {height_error_message.text}")
+        print(f"Male Test Case Result Neck Error: {neck_error_message.text}")
+        print(f"Male Test Case Result Waist Error: {waist_error_message.text}")
+        print(f"Male Test Case Result Waist Error: {hip_error_message.text}")
