@@ -86,6 +86,39 @@ class TestDefaultSuite:
             assert result_text == "Body Fat: 20.1%"
         print(f"{GENDER.upper()} Test Case Result: {result_text}")
 
+    def test_with_all_invalid_inputs(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+        if GENDER == "female":
+            self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        else:
+            self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+
+        self._fill_common_fields("twenty four", "seventy", "hundred", "ninety", "sixty")
+
+        if GENDER == "female":
+            self._fill_female_specific_fields("fifty")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        age_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Please provide a positive age.')]")
+        weight_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Please provide a positive weight.')]")
+        height_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Height need to be positive.')]")
+        neck_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Neck need to be numeric.')]")
+        waist_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Waist need to be numeric.')]")
+        if GENDER == "female":
+            hip_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Hip need to be numeric.')]")
+
+        assert age_error_message.text == "Please provide a positive age."
+        print(f"{GENDER.capitalize()} Test Case Result Age Error: {age_error_message.text}")
+        assert weight_error_message.text == "Please provide a positive weight."
+        print(f"{GENDER.capitalize()} Test Case Result Weight Error: {weight_error_message.text}")
+        assert height_error_message.text == "Height need to be positive."
+        print(f"{GENDER.capitalize()} Test Case Result Height Error: {height_error_message.text}")
+        assert neck_error_message.text == "Neck need to be numeric."
+        print(f"{GENDER.capitalize()} Test Case Result Neck Error: {neck_error_message.text}")
         assert waist_error_message.text == "Waist need to be numeric."
-        print(f"Male Test Case With Empty Age Error: {waist_error_message.text}")
+        print(f"{GENDER.capitalize()} Test Case Result Waist Error: {waist_error_message.text}")
+        if GENDER == "female":
+            assert hip_error_message.text == "Hip need to be numeric."
+            print(f"{GENDER.capitalize()} Test Case Result Waist Error: {waist_error_message.text}")
 
