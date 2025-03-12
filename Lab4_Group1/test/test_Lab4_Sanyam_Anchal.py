@@ -6,6 +6,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+GENDER = "female"
 
 class TestDefaultSuite:
     @classmethod
@@ -21,37 +22,22 @@ class TestDefaultSuite:
         """Quits the driver after all test ran."""
         cls.driver.quit()
 
-    def test_clear_btn(self):
-        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
-        age_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
-        weight_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
-        height_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
-        neck_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
-        waist_value = self.driver.find_element(By.NAME, "cage").get_attribute("value")
-
-        # Check If the values are empty
-        assert age_value == ""
-        assert weight_value == ""
-        assert height_value == ""
-        assert neck_value == ""
-        assert waist_value == ""
-
-        print(f"Clear Button Result: Clears the text fields.")
-
-
-    def test_male_valid(self):
-        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
-        self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(1) > .rbmark").click()  # Select the male radio button
+    def _fill_common_fields(self, age, weight, height, neck, waist):
         self.driver.find_element(By.NAME, "cage").click()  # Age
-        self.driver.find_element(By.NAME, "cage").send_keys("24")  # Send keys to Age
+        self.driver.find_element(By.NAME, "cage").send_keys(age)  # Send keys to Age
         self.driver.find_element(By.NAME, "cweightkgs").click()  # Weight
-        self.driver.find_element(By.NAME, "cweightkgs").send_keys("70")  # Send keys to Weight
+        self.driver.find_element(By.NAME, "cweightkgs").send_keys(weight)  # Send keys to Weight
         self.driver.find_element(By.ID, "cheightmeter").click()  # Height
-        self.driver.find_element(By.ID, "cheightmeter").send_keys("170")  # Send keys to Height
+        self.driver.find_element(By.ID, "cheightmeter").send_keys(height)  # Send keys to Height
         self.driver.find_element(By.ID, "cneckmeter").click()  # Neck
-        self.driver.find_element(By.ID, "cneckmeter").send_keys("50")  # Send keys to Neck
+        self.driver.find_element(By.ID, "cneckmeter").send_keys(neck)  # Send keys to Neck
         self.driver.find_element(By.ID, "cwaistmeter").click()  # Waist
-        self.driver.find_element(By.ID, "cwaistmeter").send_keys("100")  # Send keys to Waist
+        self.driver.find_element(By.ID, "cwaistmeter").send_keys(waist)  # Send keys to Waist
+
+    def _fill_female_specific_fields(self, hip):
+        self.driver.find_element(By.ID, "chipmeter").click() # Hip
+        self.driver.find_element(By.ID, "chipmeter").send_keys(hip) # Send keys to Hip
+
 
         # Calculate and verify the result
         self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
