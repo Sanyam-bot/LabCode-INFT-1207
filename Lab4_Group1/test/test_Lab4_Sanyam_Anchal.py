@@ -189,3 +189,25 @@ class TestDefaultSuite:
 
         assert waist_error_message.text == "Waist need to be numeric."
         print(f"Male Test Case With Empty Age Error: {waist_error_message.text}")
+
+    def test_female_valid(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+        self.driver.find_element(By.CSS_SELECTOR, ".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+        self.driver.find_element(By.NAME, "cage").click()  # Age
+        self.driver.find_element(By.NAME, "cage").send_keys("24")  # Send keys to Age
+        self.driver.find_element(By.NAME, "cweightkgs").click()  # Weight
+        self.driver.find_element(By.NAME, "cweightkgs").send_keys("70")  # Send keys to Weight
+        self.driver.find_element(By.ID, "cheightmeter").click()  # Height
+        self.driver.find_element(By.ID, "cheightmeter").send_keys("170")  # Send keys to Height
+        self.driver.find_element(By.ID, "cneckmeter").click()  # Neck
+        self.driver.find_element(By.ID, "cneckmeter").send_keys("50")  # Send keys to Neck
+        self.driver.find_element(By.ID, "cwaistmeter").click()  # Waist
+        self.driver.find_element(By.ID, "cwaistmeter").send_keys("80")  # Send keys to Waist
+        self.driver.find_element(By.ID, "chipmeter").click() # Hip
+        self.driver.find_element(By.ID, "chipmeter").send_keys("92") # Send keys to Hip
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        result_text = self.driver.find_element(By.CSS_SELECTOR, "font > b").text
+        assert result_text == "Body Fat: 17.7%"
+        print(f"Female Test Case Result: {result_text}")
