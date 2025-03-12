@@ -3,6 +3,7 @@
 # Date: Mar 11, 2025
 # Description: Automated test cases for Body Fat Calculator
 
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -223,3 +224,18 @@ class TestDefaultSuite:
         assert waist_error_message.text == "Waist need to be numeric."
         print(f"{GENDER.capitalize()} Test Case With Empty Waist Error: {waist_error_message.text}")
 
+    @pytest.mark.skipif(GENDER != "female", reason="Test Case only applicable for female.")
+    def test_with_empty_hip(self):
+        self.driver.find_element(By.CSS_SELECTOR, "input:nth-child(2)").click()  # Clear all the default inputs
+
+        self.driver.find_element(By.CSS_SELECTOR,".cbcontainer:nth-child(2) > .rbmark").click()  # Select the female radio button
+
+        self._fill_common_fields("50", "70", "170", "50", "100")
+        self._fill_female_specific_fields("")
+
+        # Calculate and verify the result
+        self.driver.find_element(By.NAME, "x").click()  # Click the calculate button
+        hip_error_message = self.driver.find_element(By.XPATH, "//font[contains(text(), 'Hip need to be numeric.')]")
+
+        assert hip_error_message.text == "Hip need to be numeric."
+        print(f"Female Test Case Result Hip Error: {hip_error_message.text}")
