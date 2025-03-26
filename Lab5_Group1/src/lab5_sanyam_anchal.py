@@ -32,7 +32,6 @@ class TestMagnetoWebsite(unittest.TestCase):
 
     def test_01_navigate_to_product_page(self):
         """Navigate to Women -> Tops -> Hoodies & Sweatshirts"""
-        print("Navigating to Women -> Tops -> Hoodies & Sweatshirts")
         driver = self.driver
         # Click on Women, but wait till it's clickable
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Women"))).click()
@@ -46,6 +45,8 @@ class TestMagnetoWebsite(unittest.TestCase):
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Hoodies & Sweatshirts')]"))
         ).click()
+
+        print("Test Case 1: Successfully navigated to Women -> Tops -> Hoodies & Sweatshirts.")
 
     # Apply filters for style, size, price, color, and material
     def test_02_apply_filters(self):
@@ -84,6 +85,8 @@ class TestMagnetoWebsite(unittest.TestCase):
         # Select purple, from the drop menu
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.filter-options-item:nth-child(4) > div:nth-child(2) > ol:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click()
 
+        print("Test Case 2: Successfully applied filters to the products.")
+
     def test_03_selected_dress_to_cart(self):
         driver = self.driver
 
@@ -98,6 +101,8 @@ class TestMagnetoWebsite(unittest.TestCase):
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
             (By.CSS_SELECTOR, "li.product:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > button:nth-child(4)")
         )).click()
+
+        print("Test Case 3: Successfully added selected dress to the cart.")
 
     def test_04_proceed_to_checkout(self):
         driver = self.driver
@@ -116,6 +121,8 @@ class TestMagnetoWebsite(unittest.TestCase):
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
             (By.CSS_SELECTOR, "#top-cart-btn-checkout")
         )).click()
+
+        print("Test Case 4: Successfully proceeded to checkout.")
 
     def test_05_assert_order_summary(self):
         driver = self.driver
@@ -141,4 +148,4 @@ class TestMagnetoWebsite(unittest.TestCase):
         assert size_of_dress_cart.text == "M"
         assert color_of_the_dress_cart.text == "Purple"
 
-        print("Order Summary has the selected dress.")
+        print("Test Case 5: Order Summary has the selected dress.")
