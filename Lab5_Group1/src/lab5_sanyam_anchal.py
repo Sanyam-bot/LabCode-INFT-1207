@@ -117,7 +117,28 @@ class TestMagnetoWebsite(unittest.TestCase):
             (By.CSS_SELECTOR, "#top-cart-btn-checkout")
         )).click()
 
-        # Wait till the next page is loaded, by finding if the shipping element is present
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "#shipping > div:nth-child(1)")
+    def test_05_assert_order_summary(self):
+        driver = self.driver
+
+        # Wait for the checkout-loader element to disappear
+        WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(
+            (By.ID, "checkout-loader")
         ))
+
+        # Expand the order summary
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "div.title")
+        )).click()
+
+        # Expand item details
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "span.toggle")
+        )).click()
+
+        # Assert the order summary
+        size_of_dress_cart = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(2)")
+        color_of_the_dress_cart = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(4)")
+        assert size_of_dress_cart.text == "M"
+        assert color_of_the_dress_cart.text == "Purple"
+
+        print("Order Summary has the selected dress.")
