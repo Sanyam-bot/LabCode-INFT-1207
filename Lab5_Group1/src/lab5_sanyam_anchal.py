@@ -148,3 +148,15 @@ class TestMagnetoWebsite(unittest.TestCase):
         assert color_of_the_dress_cart.text == "Purple"
 
         print("Test Case 5: Order Summary has the selected dress.")
+
+
+if __name__ == "__main__":
+    suite = unittest.TestSuite()
+    suite.addTest(TestMagnetoWebsite("test_01_navigate_to_product_page"))
+    suite.addTest(TestMagnetoWebsite("test_02_apply_filters"))
+    suite.addTest(TestMagnetoWebsite("test_03_selected_dress_to_cart"))
+    suite.addTest(TestMagnetoWebsite("test_04_proceed_to_checkout"))
+    suite.addTest(TestMagnetoWebsite("test_05_assert_order_summary"))
+
+    runner = unittest.TextTestRunner(verbosity=2)
+    runner.run(suite)
