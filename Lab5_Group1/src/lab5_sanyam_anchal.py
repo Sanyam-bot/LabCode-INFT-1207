@@ -32,21 +32,17 @@ class TestMagnetoWebsite(unittest.TestCase):
     def test_01_navigate_to_product_page(self):
         """Navigate to Women -> Tops -> Hoodies & Sweatshirts"""
         driver = self.driver
-        # Click on Women, but wait till it's clickable
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Women"))).click()
-        # Click on Tops, but wait till it's clickable
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Tops"))).click()
-        # Get Category element, but wait till it's present
-        category = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "div.filter-options-item:nth-child(1) > div:nth-child(1)"))
-        )
-        # Using javascript to force open the dropdown for category
-        driver.execute_script("arguments[0].click();", category)
 
-        # Click on Hoodies & Sweatshirts
-        WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "div.filter-options-item:nth-child(1) > div:nth-child(2) > ol:nth-child(1) > li:nth-child(2) > a:nth-child(1)"))
-        ).click()
+        # Find Women, then hover over it
+        women = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "ui-id-4")))
+        self.hover_element(women)
+
+        # Find tops under women, then hover over it
+        tops = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "ui-id-9")))
+        self.hover_element(tops)
+
+        # Find Hoodies and Sweatshirt under tops, then click on it
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "ui-id-12"))).click()
 
         print("Test Case 1: Successfully navigated to Women -> Tops -> Hoodies & Sweatshirts.")
 
