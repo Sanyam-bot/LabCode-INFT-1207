@@ -144,8 +144,11 @@ class TestMagnetoWebsite(unittest.TestCase):
         # Assert the order summary
         size_of_dress_cart = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(2)")
         color_of_the_dress_cart = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(4)")
+        qty_of_the_dress_cart = driver.find_element(By.CSS_SELECTOR, ".value")
+
         assert size_of_dress_cart.text == "M"
         assert color_of_the_dress_cart.text == "Purple"
+        assert qty_of_the_dress_cart.text == "1"
 
         print("Test Case 5: Order Summary has the selected dress.")
 
