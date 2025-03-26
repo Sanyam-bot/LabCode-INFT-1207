@@ -6,6 +6,7 @@ import unittest
 import time
 
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -23,6 +24,11 @@ class TestMagnetoWebsite(unittest.TestCase):
     def tearDownClass(cls):
         """Quit the WebDriver instance after all tests."""
         cls.driver.quit()
+
+    def hover_element(self, element):
+        """Performs a hover action on the given element."""
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).perform()
 
     def test_01_navigate_to_product_page(self):
         """Navigate to Women -> Tops -> Hoodies & Sweatshirts"""
@@ -77,3 +83,18 @@ class TestMagnetoWebsite(unittest.TestCase):
         driver.execute_script("arguments[0].click();", material) # Using material to force open the dropdown for color
         # Select purple, from the drop menu
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.filter-options-item:nth-child(4) > div:nth-child(2) > ol:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click()
+
+    def test_03_selected_dress_to_cart(self):
+        driver = self.driver
+
+        # Get the first product after applying the filters
+        first_product = WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "li.product:nth-child(1)")
+        ))
+        # Hover over the first product
+        self.hover_element(first_product)
+
+        # Click on add to cart button, but wait for it to be clickable
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "li.product:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > button:nth-child(4)")
+        )).click()
