@@ -98,3 +98,26 @@ class TestMagnetoWebsite(unittest.TestCase):
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
             (By.CSS_SELECTOR, "li.product:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > button:nth-child(4)")
         )).click()
+
+    def test_04_proceed_to_checkout(self):
+        driver = self.driver
+
+        # Wait until the item is successfully added to the cart
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, ".message-success > div:nth-child(1)")
+        ))
+
+        # Click on the cart button
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".showcart")
+        )).click()
+
+        # Click on "proceed to checkout" button
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "#top-cart-btn-checkout")
+        )).click()
+
+        # Wait till the next page is loaded, by finding if the shipping element is present
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#shipping > div:nth-child(1)")
+        ))
